@@ -1,0 +1,99 @@
+import 'package:flutter/material.dart';
+
+void main() => runApp(MyApp());
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      initialRoute: "/",
+      routes: {
+        "/": (context) => GirisEkrani(),
+        "/KullaniciSayfasiRotasi": (context) => KullaniciEkrani(),
+        "/AdminSayfasiRotasi": (context) => AdminEkrani(),
+      },
+    );
+  }
+}
+
+class GirisEkrani extends StatefulWidget {
+  const GirisEkrani({super.key});
+
+  @override
+  State<GirisEkrani> createState() => _GirisEkraniState();
+}
+
+class _GirisEkraniState extends State<GirisEkrani> {
+  // Kullanıcı girişi
+  void kulGiris() {
+    Navigator.pushNamed(context, "/KullaniciSayfasiRotasi");
+  }
+
+  // Admin girişi
+  void adGiris() {
+    Navigator.pushNamed(context, "/AdminSayfasiRotasi");
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("Giriş Ekranı")),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ElevatedButton(
+              onPressed: kulGiris,
+              child: Text("Kullanıcı Girişi"),
+            ),
+            SizedBox(height: 16),
+            ElevatedButton(
+              onPressed: adGiris,
+              child: Text("Admin Girişi"),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class KullaniciEkrani extends StatefulWidget {
+  const KullaniciEkrani({super.key});
+
+  @override
+  State<KullaniciEkrani> createState() => _KullaniciEkraniState();
+}
+
+class _KullaniciEkraniState extends State<KullaniciEkrani> {
+  void cikisYap() {
+    Navigator.pushNamed(context, "/");
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("Kullanıcı Sayfası")),
+      body: Center(
+        child: ElevatedButton(
+          onPressed: cikisYap,
+          child: Text("Çıkış Yap"),
+        ),
+      ),
+    );
+  }
+}
+
+class AdminEkrani extends StatelessWidget {
+  const AdminEkrani({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("Admin Sayfası")),
+      body: Center(child: Text("Hoş geldiniz, Admin!")),
+    );
+  }
+}
